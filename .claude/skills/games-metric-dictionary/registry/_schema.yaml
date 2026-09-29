@@ -9,7 +9,7 @@ conditional:
 enums:
   status: [active, draft, deprecated]
   day_boundary: [utc, player_local, reporting_tz]
-  retention_type: [strict, rolling, bracket, not_applicable]
+  retention_type: [strict, rolling, bracket, period, not_applicable]
   payer_window: [period, lifetime, cohort_by_day_n, not_applicable]
   revenue_stream: [iap, ads, base_game, dlc, season_pass, battle_pass, subscription, platform_subscription_payout]
   revenue_basis: [gross, net_of_platform_fee, net_of_refunds, net_of_tax, net_all]
