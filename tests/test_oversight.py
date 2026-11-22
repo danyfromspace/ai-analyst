@@ -14,6 +14,10 @@ from portfolio_agent import data, oversight, run as portfolio_run
     ("Should we move marketing budget to Cindervale?", 0, "consequential"),
     ("Should we delist Wildspire on Steam?", 0, "strategic"),
     ("What price should Starfall Chronicles drop to?", 0, "strategic"),
+    ("Should we raise the price on Cindervale?", 0, "strategic"),
+    ("Is the Anthem of Umber deal worth renewing?", 0, "strategic"),
+    ("How complete is this list? Could we be missing a price error?", 0, "routine"),
+    ("Why did revenue cut in half for Mudlark Bay?", 0, "routine"),
 ])
 def test_classify(q, usd, tier):
     assert oversight.classify(q, usd) == tier

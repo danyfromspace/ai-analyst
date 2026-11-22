@@ -28,7 +28,11 @@ from pathlib import Path
 
 CONSEQUENTIAL_USD = 50_000
 MAX_REVISIONS = 2
-STRATEGIC = re.compile(r"\b(price|pricing|delist|sunset|invest|greenlight|deal|cut|kill|discontinue)\w*", re.I)
+STRATEGIC = re.compile(
+    r"\b(delist|sunset|invest|greenlight|discontinu|kill)\w*|\bdeals?\b"          # portfolio decisions
+    r"|\b(what|which|set|change|raise|lower|cut)\b[^.?]*\bpric(e|es|ing)\b"       # choosing a price
+    r"|\bpric(e|es|ing)\b[^.?]*\b(drop|cut|raise|change|move)\b",
+    re.I)
 CONSEQUENTIAL = re.compile(r"\b(should we|decide|decision|budget|forecast|recommend)\b", re.I)
 
 

@@ -129,6 +129,12 @@ def main(argv=None):
     else:
         rd = Path(a.run_dir)
     if a.step in ("analyze", "all"):
+        if oversight.read_status(rd).get("state") == "awaiting_frame_approval":
+            print("Strategic question: a person must approve the frame before any analysis.\n"
+                  f"  python -m portfolio_agent.oversight approve-frame {rd} --by \"Your Name\"\n"
+                  f"  python -m portfolio_agent.run analyze {rd}")
+            print(json.dumps(oversight.read_status(rd), indent=2))
+            return
         st = analyze(rd)
         if a.step == "analyze" or st["state"] != "awaiting_validation":
             print(json.dumps(st, indent=2))

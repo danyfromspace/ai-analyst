@@ -9,6 +9,8 @@ before anything consequential goes out.
 > Science, Executive Education: Agentic AI Program: Building Autonomous Systems for Real-World
 > Applications.**
 >
+> **New here?** [QUICKSTART.md](QUICKSTART.md) covers download, setup, running it, and what to ask.
+>
 > **The data is fake.** Every number in this repository comes from **Halcyon**, a fictional publisher.
 > The dataset is AI-generated and exists only to develop and evaluate this agent. No real company, game,
 > storefront account or sale is described. See [The data](#the-data).
@@ -91,13 +93,14 @@ delivered in [`data/halcyon/`](data/halcyon/):
 
 | File | Rows | Columns | What it is |
 |---|---|---|---|
-| `halcyon_catalog.csv` | 238 | `listing_id, title, platform, release_month` | One row per store listing: 165 titles on steam (149), playstation (54) and nintendo (35). 49 listings have no release month. |
-| `halcyon_monthly_net.csv` | 13,425 | `listing_id, title, platform, month, net_usd` | Net revenue per listing per month, 2014-01 to 2025-12. About $1.3M a month in 2025; 13 listing-months are negative. |
-| `halcyon_items_latest_year.csv` | 256 | `product_name, store_item_name, platform, item_type, net_usd` | 2025 net revenue by store item: base game (238), DLC (10), soundtrack (8). Shipped for completeness; the monitor does not use it. |
+| `halcyon_catalog.csv` | 238 | `listing_id, title, platform, release_month` | One row per store listing (a title on steam, playstation or nintendo). Some listings have no release month. |
+| `halcyon_monthly_net.csv` | 13,425 | `listing_id, title, platform, month, net_usd` | Net revenue per listing per month, 2014-01 to 2025-12. |
+| `halcyon_items_latest_year.csv` | 256 | `product_name, store_item_name, platform, item_type, net_usd` | Net revenue for the latest year by store item: base game, DLC or soundtrack. Shipped for completeness; the monitor does not use it. |
 
 Things to know about it:
 - **Months are calendar months as delivered.** The source states no timezone; outputs say so.
-- **`net_usd` is used as delivered.** The source does not break out gross, tax, refunds or platform fees.
+- **`net_usd` is used as delivered.** The source does not break out gross, tax, refunds or platform fees,
+  and some listing-months are negative.
 - **It is noisy on purpose.** Listings often double or halve month to month on their own promotions,
   which sets the monitor's detection limit (see [Evaluation](#evaluation)).
 - **It has no answer key.** For evaluation, `portfolio_agent/data.py::plant` copies the data up to a chosen
@@ -117,7 +120,7 @@ Runs without `--plant-seed` use the data exactly as delivered.
 
 ## Setup
 
-Python 3.11+. Windows (PowerShell):
+Step by step, with the questions to ask: [QUICKSTART.md](QUICKSTART.md). Short version, Python 3.11+. Windows (PowerShell):
 ```powershell
 git clone -b portfolio-agent https://github.com/danyfromspace/ai-analyst.git games-portfolio-agent
 cd games-portfolio-agent
@@ -148,38 +151,32 @@ Each run folder holds `frame.json`, `gate.json`, `exceptions.json`, `claims.json
 `validation.json`, `status.json` and `trace.jsonl` (plus `monthly.csv` and `truth.json` for planted runs).
 Two complete runs are in [`docs/sample_runs/`](docs/sample_runs/):
 
-- **As delivered, 2025-12:** gate PASS; two exceptions (Cindervale on Nintendo +$21,146; The Wild Odyssey
-  on Steam -$14,014); validator PASS; routine, so released.
-- **Planted (seed 1), 2025-12:** gate WARN (duplicate removed and disclosed, missing row excluded, negative
-  net flagged); the planted outage and clawback rank 1 and 2; validator PASS; $231k at stake, so it waits for
+- **As delivered, 2025-12:** the data as it is, run through the gate, monitor and validator.
+- **Planted (seed 1), 2025-12:** the same month with problems planted. The gate removes and discloses the
+  duplicate, excludes the missing row and flags negative net; the validator re-derives every claim; enough is
+  at stake that the run waits for
   a named approver.
 
 ## Evaluation
 
-`python -m portfolio_agent.evals --seeds 40` (about 3 minutes). Full results:
-[`docs/eval_results.md`](docs/eval_results.md).
+```powershell
+python -m portfolio_agent.evals --seeds 40 --out docs
+```
+About 3 minutes. Each seed picks a month, cuts the data there and plants the problems above, then measures:
 
-| Criterion | Result (40 planted months, 2021-2025) |
+| Eval | Question it answers |
 |---|---|
-| Listing outages ranked in the top 10 | **38/40** |
-| Negative-net clawbacks ranked in the top 10 | **39/40** |
-| Title-wide 0.4x collapses ranked in the top 10 | 22/40 |
-| Single-listing 3x price errors ranked in the top 10 | 14/40 |
-| Unplanted alerts | 1.85 a month |
-| Data issues reported as performance without a note | **0** (naive preparation: 45) |
-| Clean claim sets wrongly failed by the validator | **0/40** |
-| Planted claim errors caught (8 families) | **318/318** |
-| Unit tests | 68 (`python -m pytest`) |
+| E1 Monitor recall | Do the planted anomalies rank in the top 10, by kind? How many unplanted alerts a month? |
+| E2 Detection curve | When one listing is shocked by x0.1 ... x5 and everything else is as delivered, how often is it flagged? |
+| E3 Gate ablation | How many data issues does a naive preparation report as business changes, compared with the data gate? |
+| E4 Validator calibration | Do clean claim sets pass? Is each planted claim error caught? |
 
-**What this shows.** The agent reliably catches near-total losses and keeps data defects out of the
-report. Its weak spot is clear: on monthly data, a 2x-3x move on one listing looks like a promotion. The
-detection curve (one listing shocked, everything else as delivered) puts single-listing detection at 76%
-for x0.1, 37% for x0.3, 21% for x2 and 42% for x3.
+Results are written to [`docs/eval_results.md`](docs/eval_results.md). Run it yourself to see them.
 
-**What this doesn't show.** The planted errors and the checks were written by the same author, so 318/318
-says the checks catch the families they were designed for. Model behaviour (framing, wording, routing,
-stopping for approval) is covered by eight hand-run cases in
-[`evals/agent_cases.yaml`](evals/agent_cases.yaml), not by CI.
+**What it can't show.** The planted errors and the checks were written by the same author, so E4 shows the
+checks catch the error families they were designed for. Model behaviour (framing, wording, routing,
+stopping for approval) is covered by the hand-run cases in [`evals/agent_cases.yaml`](evals/agent_cases.yaml),
+not by CI. The unit tests (72) run with `python -m pytest`.
 
 ## Safety, reliability and human oversight
 
@@ -196,8 +193,8 @@ stopping for approval) is covered by eight hand-run cases in
 
 ## Limitations and next steps
 
-- **Detection limit on monthly data.** Add weekly data and a promotion calendar so a price error can be
-  told apart from a sale.
+- **Detection limit on monthly data.** Listings move a lot on their own promotions, so a price error can
+  look like a sale. Add weekly data and a promotion calendar.
 - **Blind held-out errors.** Have someone else write planted errors the checks have never seen.
 - **Agent cases in CI.** Run `evals/agent_cases.yaml` headlessly and track cost per run.
 - **Hypotheses are rules.** Connect the sources the agent names as checks (store status, price history,
@@ -213,7 +210,7 @@ CLAUDE.md                       house rules for Claude Code in this repo
 .claude/skills/                 games-portfolio (orchestrator), games-portfolio-monitor, games-portfolio-validation
 portfolio_agent/                data, portfolio (gate + monitor + claims), validation, oversight, run, evals
 data/halcyon/                   the three Halcyon CSVs (fake, AI-generated)
-tests/                          68 tests
+tests/                          72 tests
 evals/agent_cases.yaml          hand-run agent cases
 docs/eval_results.md            evaluation results (and .json)
 docs/sample_runs/               one as-delivered run, one planted run
