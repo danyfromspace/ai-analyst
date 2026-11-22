@@ -1,0 +1,58 @@
+{
+  "seed": 1,
+  "as_of": "2025-12",
+  "business_anomalies": [
+    {
+      "kind": "listing_outage",
+      "title": "Starfall Chronicles",
+      "listings": [
+        "starfallchronicles::steam"
+      ],
+      "direction": "down"
+    },
+    {
+      "kind": "price_error",
+      "title": "Umberorchard",
+      "listings": [
+        "umberorchard::playstation"
+      ],
+      "direction": "up"
+    },
+    {
+      "kind": "demand_collapse",
+      "title": "Nimbus Nine Racing",
+      "listings": [
+        "nimbusnineracing::playstation",
+        "nimbusnineracing::steam"
+      ],
+      "direction": "down"
+    },
+    {
+      "kind": "clawback",
+      "title": "Mudlark Bay",
+      "listings": [
+        "mudlarkbay::steam"
+      ],
+      "direction": "down"
+    }
+  ],
+  "data_issues": [
+    {
+      "kind": "duplicate_row",
+      "listing_id": "brassworkbastion::steam"
+    },
+    {
+      "kind": "missing_row",
+      "listing_id": "cindervale::steam"
+    }
+  ],
+  "platforms": {
+    "starfallchronicles::steam": "steam",
+    "umberorchard::playstation": "playstation",
+    "mudlarkbay::steam": "steam",
+    "brassworkbastion::steam": "steam",
+    "cindervale::steam": "steam",
+    "nimbusnineracing::playstation": "playstation",
+    "nimbusnineracing::steam": "steam"
+  }
+}

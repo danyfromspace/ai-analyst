@@ -1,0 +1,35 @@
+{
+  "status": "WARN",
+  "issues": [
+    {
+      "check": "duplicate_row",
+      "severity": "warn",
+      "detail": "brassworkbastion::steam 2025-12: row loaded more than once; extra copy dropped",
+      "listing_id": "brassworkbastion::steam",
+      "action": "deduplicated; report the load defect"
+    },
+    {
+      "check": "missing_row",
+      "severity": "warn",
+      "detail": "cindervale::steam: no row for 2025-12 although each of the 6 months before has one",
+      "listing_id": "cindervale::steam",
+      "action": "excluded this month: a missing row may be zero sales or a load gap"
+    },
+    {
+      "check": "negative_net",
+      "severity": "warn",
+      "detail": "mudlarkbay::steam 2025-12: net is negative ($-10,746.20)",
+      "listing_id": "mudlarkbay::steam",
+      "action": "kept: refunds or clawbacks can exceed sales; flag for review"
+    }
+  ],
+  "excluded_listings": [
+    "cindervale::steam"
+  ],
+  "annotated_listings": [
+    [
+      "brassworkbastion::steam",
+      "a duplicate row was removed before comparison (data issue)"
+    ]
+  ]
+}

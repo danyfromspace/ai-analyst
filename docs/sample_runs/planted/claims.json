@@ -1,0 +1,83 @@
+[
+  {
+    "id": "C0",
+    "kind": "total",
+    "metric": "halcyon_net_usd",
+    "period": "calendar month as delivered (source states no timezone)",
+    "revenue_scope": "net_usd as delivered",
+    "unit": "USD",
+    "filters": {
+      "month": "2025-12"
+    },
+    "value": 1162952.28,
+    "text": "Catalog net revenue for 2025-12 was $1,162,952."
+  },
+  {
+    "id": "C1",
+    "kind": "delta_vs_expected",
+    "metric": "halcyon_net_usd",
+    "period": "calendar month as delivered (source states no timezone)",
+    "revenue_scope": "net_usd as delivered",
+    "unit": "USD",
+    "filters": {
+      "month": "2025-12",
+      "listings": [
+        "starfallchronicles::steam"
+      ]
+    },
+    "expected_definition": "median of the listing's 6 previous months, moved by the median change of its storefront peers that month",
+    "value": -162258.35,
+    "text": "Starfall Chronicles (steam) net revenue was $162,258 below its expected month; likely explanation to check: store listing or entitlement problem on that storefront."
+  },
+  {
+    "id": "C2",
+    "kind": "delta_vs_expected",
+    "metric": "halcyon_net_usd",
+    "period": "calendar month as delivered (source states no timezone)",
+    "revenue_scope": "net_usd as delivered",
+    "unit": "USD",
+    "filters": {
+      "month": "2025-12",
+      "listings": [
+        "mudlarkbay::steam"
+      ]
+    },
+    "expected_definition": "median of the listing's 6 previous months, moved by the median change of its storefront peers that month",
+    "value": -34386.31,
+    "text": "Mudlark Bay (steam) net revenue was $34,386 below its expected month; likely explanation to check: refund or chargeback clawback (net revenue is negative)."
+  },
+  {
+    "id": "C3",
+    "kind": "delta_vs_expected",
+    "metric": "halcyon_net_usd",
+    "period": "calendar month as delivered (source states no timezone)",
+    "revenue_scope": "net_usd as delivered",
+    "unit": "USD",
+    "filters": {
+      "month": "2025-12",
+      "listings": [
+        "cindervale::nintendo"
+      ]
+    },
+    "expected_definition": "median of the listing's 6 previous months, moved by the median change of its storefront peers that month",
+    "value": 21145.89,
+    "text": "Cindervale (nintendo) net revenue was $21,146 above its expected month; likely explanation to check: unplanned price change or promotion not on the calendar."
+  },
+  {
+    "id": "C4",
+    "kind": "delta_vs_expected",
+    "metric": "halcyon_net_usd",
+    "period": "calendar month as delivered (source states no timezone)",
+    "revenue_scope": "net_usd as delivered",
+    "unit": "USD",
+    "filters": {
+      "month": "2025-12",
+      "listings": [
+        "thewildodyssey::steam"
+      ]
+    },
+    "expected_definition": "median of the listing's 6 previous months, moved by the median change of its storefront peers that month",
+    "value": -13687.43,
+    "text": "The Wild Odyssey (steam) net revenue was $13,687 below its expected month; likely explanation to check: store listing or entitlement problem on that storefront."
+  }
+]

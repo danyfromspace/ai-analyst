@@ -1,0 +1,12 @@
+{
+  "question": "Which titles need attention this month?",
+  "as_of": "2025-12",
+  "data_dir": "data/halcyon",
+  "tier": "routine",
+  "planted": true,
+  "plant_seed": 1,
+  "hypothesis": "most listings sit inside their expected band; a few move by more than noise",
+  "metric": "halcyon_net_usd",
+  "period": "calendar month as delivered (source states no timezone)",
+  "revenue_scope": "net_usd as delivered"
+}

@@ -1,0 +1,179 @@
+{
+  "as_of": "2025-12",
+  "metric": "halcyon_net_usd",
+  "revenue_scope": "net_usd as delivered",
+  "period": "calendar month as delivered (source states no timezone)",
+  "expected_definition": "median of the listing's 6 previous months, moved by the median change of its storefront peers that month",
+  "thresholds": {
+    "robust_z": 3.5,
+    "min_usd": 1000.0,
+    "corroborate_z": 2.0,
+    "min_age_months": 12
+  },
+  "storefront_factor_as_of": {
+    "nintendo": 1.018,
+    "playstation": 1.101,
+    "steam": 1.1
+  },
+  "listings_checked": 218,
+  "incidents": [
+    {
+      "title": "Starfall Chronicles",
+      "scope": "listing",
+      "listings": [
+        "starfallchronicles::steam"
+      ],
+      "platforms": [
+        "steam"
+      ],
+      "corroborating_listings": [],
+      "delta_usd": -162258.35,
+      "direction": "down",
+      "any_negative_net": false,
+      "data_notes": [],
+      "series": [
+        {
+          "listing_id": "starfallchronicles::steam",
+          "title": "Starfall Chronicles",
+          "platform": "steam",
+          "actual": 2230.9,
+          "expected": 164489.25,
+          "delta_usd": -162258.35,
+          "delta_pct": -0.9864,
+          "robust_z": -5.9
+        }
+      ],
+      "hypotheses": [
+        {
+          "hypothesis": "store listing or entitlement problem on that storefront",
+          "check": "store page status, partner portal notices, delisting or rating changes"
+        }
+      ],
+      "rank": 1
+    },
+    {
+      "title": "Mudlark Bay",
+      "scope": "listing",
+      "listings": [
+        "mudlarkbay::steam"
+      ],
+      "platforms": [
+        "steam"
+      ],
+      "corroborating_listings": [],
+      "delta_usd": -34386.31,
+      "direction": "down",
+      "any_negative_net": true,
+      "data_notes": [],
+      "series": [
+        {
+          "listing_id": "mudlarkbay::steam",
+          "title": "Mudlark Bay",
+          "platform": "steam",
+          "actual": -10746.2,
+          "expected": 23640.11,
+          "delta_usd": -34386.31,
+          "delta_pct": -1.4546,
+          "robust_z": -10.11
+        }
+      ],
+      "hypotheses": [
+        {
+          "hypothesis": "refund or chargeback clawback (net revenue is negative)",
+          "check": "storefront payout statement adjustments and refund reasons"
+        }
+      ],
+      "rank": 2
+    },
+    {
+      "title": "Cindervale",
+      "scope": "listing",
+      "listings": [
+        "cindervale::nintendo"
+      ],
+      "platforms": [
+        "nintendo"
+      ],
+      "corroborating_listings": [],
+      "delta_usd": 21145.89,
+      "direction": "up",
+      "any_negative_net": false,
+      "data_notes": [],
+      "series": [
+        {
+          "listing_id": "cindervale::nintendo",
+          "title": "Cindervale",
+          "platform": "nintendo",
+          "actual": 31247.92,
+          "expected": 10102.03,
+          "delta_usd": 21145.89,
+          "delta_pct": 2.0932,
+          "robust_z": 3.96
+        }
+      ],
+      "hypotheses": [
+        {
+          "hypothesis": "unplanned price change or promotion not on the calendar",
+          "check": "price history on that storefront; promotion calendar"
+        }
+      ],
+      "rank": 3
+    },
+    {
+      "title": "The Wild Odyssey",
+      "scope": "listing",
+      "listings": [
+        "thewildodyssey::steam"
+      ],
+      "platforms": [
+        "steam"
+      ],
+      "corroborating_listings": [],
+      "delta_usd": -13687.43,
+      "direction": "down",
+      "any_negative_net": false,
+      "data_notes": [],
+      "series": [
+        {
+          "listing_id": "thewildodyssey::steam",
+          "title": "The Wild Odyssey",
+          "platform": "steam",
+          "actual": 492.78,
+          "expected": 14180.21,
+          "delta_usd": -13687.43,
+          "delta_pct": -0.9652,
+          "robust_z": -15.79
+        }
+      ],
+      "hypotheses": [
+        {
+          "hypothesis": "store listing or entitlement problem on that storefront",
+          "check": "store page status, partner portal notices, delisting or rating changes"
+        }
+      ],
+      "rank": 4
+    }
+  ],
+  "not_monitored": [
+    {
+      "listing_id": "cindervale::steam",
+      "reason": "data gate: missing row"
+    },
+    {
+      "listing_id": "duskprotocol::playstation",
+      "reason": "a gap in the 6 months before"
+    },
+    {
+      "listing_id": "marrowlegacy::playstation",
+      "reason": "a gap in the 6 months before"
+    },
+    {
+      "listing_id": "theslatefrontier::steam",
+      "reason": "a gap in the 6 months before"
+    },
+    {
+      "listing_id": "tribunalofcoral::steam",
+      "reason": "too little history to score"
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "as_of": "2025-12",
+  "metric": "halcyon_net_usd",
+  "revenue_scope": "net_usd as delivered",
+  "period": "calendar month as delivered (source states no timezone)",
+  "expected_definition": "median of the listing's 6 previous months, moved by the median change of its storefront peers that month",
+  "thresholds": {
+    "robust_z": 3.5,
+    "min_usd": 1000.0,
+    "corroborate_z": 2.0,
+    "min_age_months": 12
+  },
+  "storefront_factor_as_of": {
+    "nintendo": 1.018,
+    "playstation": 1.133,
+    "steam": 1.125
+  },
+  "listings_checked": 219,
+  "incidents": [
+    {
+      "title": "Cindervale",
+      "scope": "listing",
+      "listings": [
+        "cindervale::nintendo"
+      ],
+      "platforms": [
+        "nintendo"
+      ],
+      "corroborating_listings": [],
+      "delta_usd": 21145.89,
+      "direction": "up",
+      "any_negative_net": false,
+      "data_notes": [],
+      "series": [
+        {
+          "listing_id": "cindervale::nintendo",
+          "title": "Cindervale",
+          "platform": "nintendo",
+          "actual": 31247.92,
+          "expected": 10102.03,
+          "delta_usd": 21145.89,
+          "delta_pct": 2.0932,
+          "robust_z": 3.96
+        }
+      ],
+      "hypotheses": [
+        {
+          "hypothesis": "unplanned price change or promotion not on the calendar",
+          "check": "price history on that storefront; promotion calendar"
+        }
+      ],
+      "rank": 1
+    },
+    {
+      "title": "The Wild Odyssey",
+      "scope": "listing",
+      "listings": [
+        "thewildodyssey::steam"
+      ],
+      "platforms": [
+        "steam"
+      ],
+      "corroborating_listings": [],
+      "delta_usd": -14014.26,
+      "direction": "down",
+      "any_negative_net": false,
+      "data_notes": [],
+      "series": [
+        {
+          "listing_id": "thewildodyssey::steam",
+          "title": "The Wild Odyssey",
+          "platform": "steam",
+          "actual": 492.78,
+          "expected": 14507.04,
+          "delta_usd": -14014.26,
+          "delta_pct": -0.966,
+          "robust_z": -15.89
+        }
+      ],
+      "hypotheses": [
+        {
+          "hypothesis": "store listing or entitlement problem on that storefront",
+          "check": "store page status, partner portal notices, delisting or rating changes"
+        }
+      ],
+      "rank": 2
+    }
+  ],
+  "not_monitored": [
+    {
+      "listing_id": "duskprotocol::playstation",
+      "reason": "a gap in the 6 months before"
+    },
+    {
+      "listing_id": "marrowlegacy::playstation",
+      "reason": "a gap in the 6 months before"
+    },
+    {
+      "listing_id": "theslatefrontier::steam",
+      "reason": "a gap in the 6 months before"
+    },
+    {
+      "listing_id": "tribunalofcoral::steam",
+      "reason": "too little history to score"
+    }
+  ]
+}

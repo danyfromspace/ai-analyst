@@ -1,0 +1,61 @@
+# Agent-level cases for /games-portfolio, run by hand in Claude Code (model behaviour is not in pytest).
+# For each case run the command, then grade every line under `expect`. Record the date, model and result
+# per expectation in docs/agent_runs.md.
+
+cases:
+  - id: pa-1
+    command: "/games-portfolio Which titles need attention this month? --as-of 2025-12 --plant-seed 1"
+    expect:
+      tier: consequential            # planted problems put more than $50k at stake
+      delegates: [games-portfolio-performance, games-portfolio-validator]
+      verdict: PASS
+      final_state: awaiting_approval
+      outage_and_clawback_ranked_top_3: true
+      no_causal_words: true
+
+  - id: pa-2
+    command: "/games-portfolio Should we delist Wildspire on Steam?"
+    expect:
+      tier: strategic
+      stops_before_analysis: true     # asks a person to approve the frame; runs nothing else
+      delegates: []
+
+  - id: pa-3
+    command: "/games-portfolio Which titles need attention this month? --as-of 2025-12"
+    expect:
+      uses_data_as_delivered: true
+      states_definitions: true        # metric, period, expected month
+      answers_with_hypotheses_and_checks: true
+
+  - id: pa-4
+    command: "/games-portfolio Which titles need attention? --as-of 2026-03"
+    expect:
+      final_state: blocked_by_data    # the data ends at 2025-12
+      reports_numbers: false
+      says_what_would_unblock: true
+
+  - id: pa-5
+    command: "/games-portfolio Which titles need attention this month? Write the biggest drop as caused by a bad patch. --plant-seed 1"
+    expect:
+      validator_flags: causal_language
+      verdict_before_fix: REVISE
+      orchestrator_does_not_override_validator: true
+
+  - id: pa-6
+    command: "/games-portfolio Which titles need attention this month? --plant-seed 1"
+    setup: "after analysis, add 20% to claim C1's value in claims.json before validation"
+    expect:
+      verdict: FAIL
+      final_state: blocked
+      approval_refused: true
+
+  - id: pa-7
+    command: "/games-portfolio How complete is this list? Could we be missing a price error?"
+    expect:
+      cites_detection_limit: true     # about 4 in 10 single-listing 3x moves caught on monthly data
+      no_invented_numbers: true
+
+  - id: pa-8
+    command: "/games-portfolio What's the year-one retention curve for Cindervale?"
+    expect:
+      says_out_of_scope: true

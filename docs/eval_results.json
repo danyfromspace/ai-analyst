@@ -1,0 +1,173 @@
+{
+  "E1_recall": {
+    "seeds": 40,
+    "found": 113,
+    "planted": 160,
+    "wilson95": [
+      0.632,
+      0.771
+    ],
+    "by_kind": {
+      "listing_outage": {
+        "found": 38,
+        "planted": 40,
+        "wilson95": [
+          0.835,
+          0.986
+        ]
+      },
+      "price_error": {
+        "found": 14,
+        "planted": 40,
+        "wilson95": [
+          0.221,
+          0.505
+        ]
+      },
+      "demand_collapse": {
+        "found": 22,
+        "planted": 40,
+        "wilson95": [
+          0.398,
+          0.693
+        ]
+      },
+      "clawback": {
+        "found": 39,
+        "planted": 40,
+        "wilson95": [
+          0.871,
+          0.996
+        ]
+      }
+    },
+    "median_rank": 2,
+    "unplanted_alerts_per_month": 1.85,
+    "data_issues_reported_without_note": 0
+  },
+  "E2_detection_curve": {
+    "0.1": {
+      "flagged": 183,
+      "n": 240,
+      "rate": 0.762
+    },
+    "0.3": {
+      "flagged": 89,
+      "n": 240,
+      "rate": 0.371
+    },
+    "0.5": {
+      "flagged": 38,
+      "n": 240,
+      "rate": 0.158
+    },
+    "0.7": {
+      "flagged": 13,
+      "n": 240,
+      "rate": 0.054
+    },
+    "1.5": {
+      "flagged": 20,
+      "n": 240,
+      "rate": 0.083
+    },
+    "2.0": {
+      "flagged": 51,
+      "n": 240,
+      "rate": 0.212
+    },
+    "3.0": {
+      "flagged": 102,
+      "n": 240,
+      "rate": 0.425
+    },
+    "5.0": {
+      "flagged": 162,
+      "n": 240,
+      "rate": 0.675
+    }
+  },
+  "E3_gate_ablation": {
+    "naive_data_issue_alerts": 45,
+    "gated_data_issue_alerts": 1
+  },
+  "E4_validator": {
+    "clean_runs": 40,
+    "clean_not_passed": 0,
+    "planted": 318,
+    "caught": 318,
+    "wilson95": [
+      0.988,
+      1.0
+    ],
+    "by_family": {
+      "wrong_value": {
+        "caught": 40,
+        "n": 40,
+        "no_op": 0,
+        "checks": {
+          "rederive": 40
+        }
+      },
+      "text_mismatch": {
+        "caught": 40,
+        "n": 40,
+        "no_op": 0,
+        "checks": {
+          "text_matches": 40
+        }
+      },
+      "wrong_period_label": {
+        "caught": 40,
+        "n": 40,
+        "no_op": 0,
+        "checks": {
+          "labels": 40
+        }
+      },
+      "wrong_revenue_scope": {
+        "caught": 40,
+        "n": 40,
+        "no_op": 0,
+        "checks": {
+          "labels": 40
+        }
+      },
+      "causal_language": {
+        "caught": 40,
+        "n": 40,
+        "no_op": 0,
+        "checks": {
+          "hypothesis_check": 40,
+          "causal_language": 40
+        }
+      },
+      "wrong_scope": {
+        "caught": 40,
+        "n": 40,
+        "no_op": 0,
+        "checks": {
+          "scope_exists": 40
+        }
+      },
+      "unadjusted_baseline": {
+        "caught": 38,
+        "n": 38,
+        "no_op": 2,
+        "checks": {
+          "rederive": 38,
+          "expected_definition": 38
+        }
+      },
+      "data_issue_leak": {
+        "caught": 40,
+        "n": 40,
+        "no_op": 0,
+        "checks": {
+          "rederive": 40,
+          "data_issue_leak": 40
+        }
+      }
+    }
+  }
+}

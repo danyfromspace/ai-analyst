@@ -1,0 +1,4 @@
+{"ts": "2026-11-22T21:33:19+00:00", "event": "framed", "tier": "routine", "question": "Which titles need attention this month?", "planted": true}
+{"ts": "2026-11-22T21:33:19+00:00", "event": "data_gate", "status": "WARN", "issues": 3}
+{"ts": "2026-11-22T21:33:20+00:00", "event": "analyzed", "incidents": 4, "claims": 5, "dollars_at_stake": 231477.98, "tier": "consequential"}
+{"ts": "2026-11-22T21:33:20+00:00", "event": "validated", "verdict": "PASS", "findings": 0, "claims_hash": "3a791f92d8b7b5ba", "state": "awaiting_approval"}

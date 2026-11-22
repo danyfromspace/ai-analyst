@@ -1,0 +1,42 @@
+{
+  "verdict": "PASS",
+  "claims_hash": "3a791f92d8b7b5ba",
+  "claims_checked": 5,
+  "rederivation": [
+    {
+      "claim_id": "C0",
+      "claimed": 1162952.28,
+      "rederived": 1162952.28,
+      "status": "pass"
+    },
+    {
+      "claim_id": "C1",
+      "claimed": -162258.35,
+      "rederived": -162258.35,
+      "status": "pass"
+    },
+    {
+      "claim_id": "C2",
+      "claimed": -34386.31,
+      "rederived": -34386.31,
+      "status": "pass"
+    },
+    {
+      "claim_id": "C3",
+      "claimed": 21145.89,
+      "rederived": 21145.89,
+      "status": "pass"
+    },
+    {
+      "claim_id": "C4",
+      "claimed": -13687.43,
+      "rederived": -13687.43,
+      "status": "pass"
+    }
+  ],
+  "findings": [],
+  "not_checked": [
+    "whether the hypotheses are the true causes (needs the named checks)",
+    "anything outside the monthly file (prices, promotions, store status)"
+  ]
+}
