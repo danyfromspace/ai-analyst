@@ -95,9 +95,6 @@ delivered in [`data/halcyon/`](data/halcyon/):
 | `halcyon_monthly_net.csv` | 13,425 | `listing_id, title, platform, month, net_usd` | Net revenue per listing per month, 2014-01 to 2025-12. About $1.3M a month in 2025; 13 listing-months are negative. |
 | `halcyon_items_latest_year.csv` | 256 | `product_name, store_item_name, platform, item_type, net_usd` | 2025 net revenue by store item: base game (238), DLC (10), soundtrack (8). Shipped for completeness; the monitor does not use it. |
 
-Net revenue per year (from the monthly file): 2014 $2.5M · 2017 $5.0M · 2020 $5.6M · 2022 $9.9M ·
-2023 $26.0M · 2024 $20.5M · 2025 $15.3M.
-
 Things to know about it:
 - **Months are calendar months as delivered.** The source states no timezone; outputs say so.
 - **`net_usd` is used as delivered.** The source does not break out gross, tax, refunds or platform fees.
